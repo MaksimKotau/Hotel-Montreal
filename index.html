@@ -6,36 +6,125 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/global.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/homePageController.js"></script>
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<img src="images/logo.png" width="80" height="80" alt="Hotel logo">
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation"></button>
 
-	<div id="carouselExampleControls" class="carousel slide"
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-5">
+				<li class="nav-item ml-5 lead"><a class="nav-link"
+					onclick="showMainFormView()" href="#">Connection</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div id="carouselHotelControls" class="carousel slide"
 		data-ride="carousel">
 		<div class="carousel-inner" role="listbox">
 			<div class="carousel-item active">
-				<img class="d-block img-fluid" src="images/hotel1.jpg" style="width:100%; height: 100%;" alt="First slide">
+				<img class="d-block img-fluid" src="images/hotel1.jpg"
+					style="width: 100%; height: 100%;" alt="First slide">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block img-fluid" src="images/hotel2.jpg" style="width:100%; height: 100%;" alt="First slide" alt="Second slide">
+				<img class="d-block img-fluid" src="images/hotel2.jpg"
+					style="width: 100%; height: 100%;" alt="First slide"
+					alt="Second slide">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block img-fluid" src="images/hotel3.jpg" style="width:100%; height: 100%;" alt="First slide" alt="Third slide">
+				<img class="d-block img-fluid" src="images/hotel3.jpg"
+					style="width: 100%; height: 100%;" alt="First slide"
+					alt="Third slide">
 			</div>
 		</div>
-		<a class="carousel-control-prev" href="#carouselExampleControls"
+		<a class="carousel-control-prev" href="#carouselHotelControls"
 			role="button" data-slide="prev"> <span
 			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
 			class="sr-only">Previous</span>
-		</a> <a class="carousel-control-next" href="#carouselExampleControls"
+		</a> <a class="carousel-control-next" href="#carouselHotelControls"
 			role="button" data-slide="next"> <span
 			class="carousel-control-next-icon" aria-hidden="true"></span> <span
 			class="sr-only">Next</span>
 		</a>
 	</div>
+	<div
+		class="container mt-5 mb-5 col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 offset-sm-1 offset-md-2 offset-lg-3 offset-xl-4"
+		id="mainForm" style="display: none;">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item"><a class="nav-link active" id="home-tab"
+				data-toggle="tab" href="#tabLogin" role="tab" aria-controls="home"
+				aria-selected="true">Login</a></li>
+			<li class="nav-item"><a class="nav-link" id="profile-tab"
+				data-toggle="tab" href="#tabRegistration" role="tab"
+				aria-controls="profile" aria-selected="false">Registration</a></li>
 
+		</ul>
 
+		<div class="tab-content p-3 border-left border-right border-bottom"
+			id="myTabContent">
+			<div class="tab-pane fade show active" id="tabLogin" role="tabpanel"
+				aria-labelledby="home-tab">
+				<h2 class="text-center">Login</h2>
+				<form id="formLogin">
+					<div class="form-group">
+						<label for="emailLogin">Email address</label> <input type="email"
+							class="form-control" id="emailLogin"
+							aria-describedby="emailHelpLogin" placeholder="Enter email">
+						<small id="emailHelpLogin" class="form-text text-muted">We'll
+							never share your email with anyone else.</small>
+					</div>
+					<div class="form-group">
+						<label for="passwordLogin">Password</label> <input type="password"
+							class="form-control" id="passwordLogin" placeholder="Password">
+					</div>
+					<button type="submit" class="btn btn-primary">Login</button>
+					<button type="button" class="btn btn-danger float-right"
+						onclick="showMainPageView()">Close</button>
+				</form>
+			</div>
+			<div class="tab-pane fade" id="tabRegistration" role="tabpanel"
+				aria-labelledby="profile-tab">
+				<h2 class="text-center">Registration</h2>
+				<form id="formRegistration">
+					<div class="form-group">
+						<label for="fname">First name</label> <input type="text"
+							class="form-control" id="fname" placeholder="First Name">
+					</div>
+					<div class="form-group">
+						<label for="lname">Last name</label> <input type="text"
+							class="form-control" id="lname" placeholder="Last Name">
+					</div>
+					<div class="form-group">
+						<label for="emailRegistration">Email address</label> <input
+							type="email" class="form-control" id="emailRegistration"
+							aria-describedby="emailHelp" placeholder="Enter email"> <small
+							id="emailHelp" class="form-text text-muted">We'll never
+							share your email with anyone else.</small>
+					</div>
+					<div class="form-group">
+						<label for="passwordRegistration">Password</label> <input
+							type="password" class="form-control" id="passwordRegistration"
+							placeholder="Password">
+					</div>
+					<div class="form-group">
+						<label for="passwordRegistration1">Password confirmation</label> <input
+							type="password" class="form-control" id="passwordRegistration1"
+							placeholder="Password confirmation">
+					</div>
+					<button type="submit" class="btn btn-primary">Registration</button>
+					<button type="button" class="btn btn-danger float-right"
+						onclick="showMainPageView()">Close</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
