@@ -11,6 +11,9 @@
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/homePageController.js"></script>
+<script src="js/formsValidation.js"></script>
+<script src="js/userRequests.js"></script>
+<script src="js/userControllerView.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,7 +24,7 @@
 			aria-label="Toggle navigation"></button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav ml-5">
+			<ul class="navbar-nav ml-auto">
 				<li class="nav-item ml-5 lead"><a class="nav-link"
 					onclick="showMainFormView()" href="#">Connection</a></li>
 			</ul>
@@ -73,18 +76,19 @@
 			<div class="tab-pane fade show active" id="tabLogin" role="tabpanel"
 				aria-labelledby="home-tab">
 				<h2 class="text-center">Login</h2>
-				<form id="formLogin">
+				<form id="formLogin" action="javascript: userLogin()" method="post">
 					<div class="form-group">
 						<label for="emailLogin">Email address</label> <input type="email"
-							class="form-control" id="emailLogin"
-							aria-describedby="emailHelpLogin" placeholder="Enter email">
+							class="form-control" id="emailLogin" name="email"
+							aria-describedby="emailHelpLogin" placeholder="Enter email" required>
 						<small id="emailHelpLogin" class="form-text text-muted">We'll
 							never share your email with anyone else.</small>
 					</div>
 					<div class="form-group">
 						<label for="passwordLogin">Password</label> <input type="password"
-							class="form-control" id="passwordLogin" placeholder="Password">
+							class="form-control" id="passwordLogin" name="password" placeholder="Password" required>
 					</div>
+					<div id="loginErr" class="pb-4"></div>
 					<button type="submit" class="btn btn-primary">Login</button>
 					<button type="button" class="btn btn-danger float-right"
 						onclick="showMainPageView()">Close</button>
@@ -93,38 +97,42 @@
 			<div class="tab-pane fade" id="tabRegistration" role="tabpanel"
 				aria-labelledby="profile-tab">
 				<h2 class="text-center">Registration</h2>
-				<form id="formRegistration">
+				<form id="formRegistration" action="javascript: userRegistration()" onsubmit="return validateFormNewUser()" method="post">
 					<div class="form-group">
 						<label for="fname">First name</label> <input type="text"
-							class="form-control" id="fname" placeholder="First Name">
+							class="form-control" id="fname" name="fname" placeholder="First Name" required>
 					</div>
 					<div class="form-group">
 						<label for="lname">Last name</label> <input type="text"
-							class="form-control" id="lname" placeholder="Last Name">
+							class="form-control" id="lname" name="lname" placeholder="Last Name" required>
 					</div>
 					<div class="form-group">
 						<label for="emailRegistration">Email address</label> <input
-							type="email" class="form-control" id="emailRegistration"
-							aria-describedby="emailHelp" placeholder="Enter email"> <small
+							type="email" class="form-control" id="emailRegistration" name="email"
+							aria-describedby="emailHelp" placeholder="Enter email" required> <small
 							id="emailHelp" class="form-text text-muted">We'll never
 							share your email with anyone else.</small>
 					</div>
 					<div class="form-group">
 						<label for="passwordRegistration">Password</label> <input
-							type="password" class="form-control" id="passwordRegistration"
-							placeholder="Password">
+							type="password" class="form-control" id="passwordRegistration" name="password1"
+							placeholder="Password" required>
 					</div>
 					<div class="form-group">
 						<label for="passwordRegistration1">Password confirmation</label> <input
-							type="password" class="form-control" id="passwordRegistration1"
-							placeholder="Password confirmation">
+							type="password" class="form-control" id="passwordRegistration1" name="password2"
+							placeholder="Password confirmation" required>
 					</div>
+					<div id="registrErr" class="pb-4"></div>
 					<button type="submit" class="btn btn-primary">Registration</button>
 					<button type="button" class="btn btn-danger float-right"
 						onclick="showMainPageView()">Close</button>
 				</form>
 			</div>
 		</div>
+	</div>
+	<div class="container" id="hotelReservation">
+		
 	</div>
 </body>
 </html>

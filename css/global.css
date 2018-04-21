@@ -2,3 +2,11 @@
 	color: #DDD;
 	font-weight: 400;
 }
+#registrErr p{
+	line-height: 1.2em !important;
+	margin-bottom: 0;
+}
+#loginErr p{
+	line-height: 1.2em !important;
+	margin-bottom: 0;
+}
