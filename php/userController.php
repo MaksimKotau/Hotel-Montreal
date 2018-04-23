@@ -2,15 +2,19 @@
     session_start();
     $tabRes=array();
     require_once("../includes/modele.inc.php");
+    
+    //get current user from session
     function getUserFromSession(){
     	global $tabRes;
     	$tabRes['action']="userfromsession";
     	if (isset($_SESSION['fname'])){
     		$tabRes['fname'] = $_SESSION['fname'];
+    		$tabRes['role'] = $_SESSION['role'];
     	}else {
     		$tabRes['fname']="";
     	}
     }
+    //registration of new user
     function userRegistration(){
     	global $tabRes;
     	$tabRes['action']="registration";
@@ -19,10 +23,6 @@
     	$email = $_POST['email'];
     	$password1 = $_POST['password1'];
      	$password2 = $_POST['password2'];
-//     	$fname = "Maksim";
-//     	$lname = "Kotau";
-//     	$email = "maxkortov@gmail.com";
-//     	$password1 = "123456";
     	$password1 = md5($password1);
     	try{
     		$requete = "SELECT * FROM users WHERE email=? LIMIT 1";
@@ -34,6 +34,7 @@
     			$idu = $unModel->executerAndGetId();
     			$_SESSION['userid'] = $idu;
     			$_SESSION['fname'] = $fname;
+    			$_SESSION['role'] = "USER";
     			$tabRes['error']="";
     		}else{
     			$tabRes['error']="User with this e-mail already exists";
@@ -44,6 +45,8 @@
     		unset($unModele);
     	}
     }
+    
+    //login confirmation
     function login(){
     	global $tabRes;
     	$tabRes['action']="login";
@@ -58,8 +61,10 @@
     		if ($stmt->rowCount() == 1) {
     			$_SESSION['userid'] = $ligne->idu;
     			$_SESSION['fname'] = $ligne->fname;
+    			$_SESSION['role'] = $ligne->role;
     			$tabRes['userid'] = $_SESSION['userid'];
     			$tabRes['fname'] = $_SESSION['fname'];
+    			$tabRes['role'] = $_SESSION['role'];
     			$tabRes['error']= "";
     		}else {
     			$tabRes['error']= "Incorrect login / password";
@@ -70,10 +75,13 @@
     		unset($unModele);
     	}
     }
+    
+    // user/admin logout
     function userLogout(){
     	global $tabRes;
     	unset($_SESSION['userid']);
     	unset($_SESSION['fname']);
+    	unset($_SESSION['role']);
     	$_SESSION = array();
     	session_destroy();
     	$tabRes['action']="logout";

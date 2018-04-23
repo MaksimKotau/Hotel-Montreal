@@ -1,14 +1,14 @@
 function currentUser() {
     var formUser = new FormData();
-    formUser.append('action', 'getuser');// alert(formFilm.get("action"));
+    formUser.append('action', 'getuser');
     $.ajax({
 	type : 'POST',
 	url : 'php/userController.php',
 	data : formUser,
 	contentType : false,
 	processData : false,
-	dataType : 'json', // text pour le voir en format de string
-	success : function(reponse) {// alert(reponse);
+	dataType : 'json',
+	success : function(reponse) {
 	    userVue(reponse);
 	},
 	fail : function(err) {
@@ -22,13 +22,12 @@ function userLogin() {
 	    type : 'POST',
 	    url : 'php/userController.php',
 	    data : formUser,
-	    dataType : 'json', // text pour le voir en format de string
+	    dataType : 'json',
 	    // async : false,
 	    // cache : false,
 	    contentType : false,
 	    processData : false,
 	    success : function(reponse) {
-		// alert("reponse: " + reponse);
 		userVue(reponse);
 	    },
 	    fail : function(err) {
@@ -44,13 +43,12 @@ function userRegistration() {
 	type : 'POST',
 	url : 'php/userController.php',
 	data : formUser,
-	dataType : 'json', // text pour le voir en format de string
+	dataType : 'json',
 	// async : false,
 	// cache : false,
 	contentType : false,
 	processData : false,
 	success : function(reponse) {
-	    // alert("reponse: " + reponse.e);
 	    userVue(reponse);
 	    return true;
 	},
@@ -63,15 +61,15 @@ function userRegistration() {
 
 function userLogout() {
     var formUser = new FormData();
-    formUser.append('action', 'logout');// alert(formFilm.get("action"));
+    formUser.append('action', 'logout');
     $.ajax({
 	type : 'POST',
 	url : 'php/userController.php',
 	data : formUser,
 	contentType : false,
 	processData : false,
-	dataType : 'json', // text pour le voir en format de string
-	success : function(reponse) {// alert(reponse);
+	dataType : 'json',
+	success : function(reponse) {
 	    userVue(reponse);
 	},
 	fail : function(err) {
